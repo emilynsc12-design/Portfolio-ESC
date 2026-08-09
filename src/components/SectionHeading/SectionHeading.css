@@ -1,0 +1,22 @@
+.section-heading {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.section-heading--center {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-heading__title {
+  font-size: clamp(28px, 3.4vw, 38px);
+}
+
+.section-heading__desc {
+  margin-top: 16px;
+  color: var(--text-secondary);
+  font-size: 16.5px;
+  line-height: 1.7;
+}
