@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { certificates } from '../../data/certificates.js'
 import SectionHeading from '../SectionHeading/SectionHeading.jsx'
 import { useReveal } from '../../hooks/useReveal.js'
+import { useModal } from '../../hooks/useModal.js'
 import './Certificates.css'
 
 function CertificateCard({ certificate, onOpen }) {
@@ -28,27 +29,17 @@ function CertificateCard({ certificate, onOpen }) {
 }
 
 function CertificateModal({ certificate, onClose }) {
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKeyDown)
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = previousOverflow
-    }
-  }, [onClose])
+  const contentRef = useModal(onClose)
 
   return createPortal(
     <div className="certificate-modal" role="dialog" aria-modal="true" aria-label={certificate.title} onClick={onClose}>
-      <div className="certificate-modal__content" onClick={(e) => e.stopPropagation()}>
+      <div ref={contentRef} className="certificate-modal__content" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
           className="certificate-modal__close"
           onClick={onClose}
           aria-label="Cerrar"
+          data-modal-close
         >
           ✕
         </button>
@@ -65,6 +56,8 @@ function CertificateModal({ certificate, onClose }) {
 
 export default function Certificates() {
   const [selected, setSelected] = useState(null)
+  const closeModal = useCallback(() => setSelected(null), [])
+  const openModal = useCallback((certificate) => setSelected(certificate), [])
 
   return (
     <section id="certificados" className="section certificates">
@@ -76,13 +69,13 @@ export default function Certificates() {
 
         <div className="certificates__grid">
           {certificates.map((certificate) => (
-            <CertificateCard key={certificate.id} certificate={certificate} onOpen={setSelected} />
+            <CertificateCard key={certificate.id} certificate={certificate} onOpen={openModal} />
           ))}
         </div>
       </div>
 
       {selected && (
-        <CertificateModal certificate={selected} onClose={() => setSelected(null)} />
+        <CertificateModal certificate={selected} onClose={closeModal} />
       )}
     </section>
   )

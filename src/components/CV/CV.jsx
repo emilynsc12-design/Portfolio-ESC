@@ -17,10 +17,10 @@ export default function CV() {
           </div>
 
           <a
-            href="/CV Sanchez Castillo.pdf"
-             target="_blank"
-             rel="noopener noreferrer"
-             className="btn btn-primary cv__download"
+            href={`${import.meta.env.BASE_URL}cv-sanchez-castillo.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary cv__download"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />

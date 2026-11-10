@@ -9,25 +9,26 @@
 
 .about__inner {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
-  gap: 36px;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
 }
 
-.about__photo-frame {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  aspect-ratio: 4 / 5;
-  max-width: 220px;
-  margin: 0 auto;
+/* Columna izquierda */
+.about__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
 }
 
-.about__photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.about__title {
+  /* Mismo estilo de título que los modales: Inter bold, limpio y marcado. */
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
 }
 
 .about__paragraph {
@@ -37,37 +38,49 @@
   margin-top: 12px;
 }
 
-.about__facts {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px 28px;
-  border-top: 1px solid var(--border);
-  padding-top: 24px;
+/* Columna derecha: pilares numerados */
+.about__pillar {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
 }
 
-.about__fact dd {
-  font-family: var(--font-display);
-  font-weight: 600;
+.about__pillar:first-child {
+  padding-top: 6px;
+}
+
+.about__pillar:last-child {
+  border-bottom: none;
+}
+
+.about__pillar-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.about__pillar-title {
+  /* Títulos de los pilares: Inter bold, igual que los encabezados del modal. */
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.about__pillar-text {
+  color: var(--text-secondary);
   font-size: 14px;
+  line-height: 1.65;
 }
 
 @media (max-width: 900px) {
   .about__inner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
   }
-
-  .about__photo-frame {
-    max-width: 240px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .about__facts {
-    grid-template-columns: 1fr;
-  }
-
-
 }

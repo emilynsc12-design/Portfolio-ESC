@@ -12,7 +12,7 @@ export default function SectionHeading({ field, title, description, align = 'lef
 
   return (
     <div ref={ref} className={`section-heading section-heading--${align} reveal`}>
-      <span className="field-label">{field}</span>
+      {field && <span className="field-label">{field}</span>}
       <h2 className="section-heading__title">{title}</h2>
       {description && <p className="section-heading__desc">{description}</p>}
     </div>

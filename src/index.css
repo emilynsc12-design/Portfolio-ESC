@@ -235,6 +235,37 @@ h1, h2, h3, h4 {
   font-size: 14px;
 }
 
+/* Fondo de la tarjeta/modal de proyecto cuando no hay imagen real:
+   degradado + grilla sutil, sin texto. */
+.project-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background:
+    linear-gradient(135deg, var(--accent-light) 0%, var(--bg-secondary) 55%, var(--accent-light) 100%);
+}
+
+.project-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 90%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 90%);
+}
+
+.project-placeholder svg {
+  position: relative;
+  opacity: 0.7;
+}
+
 /* Utilidades de animación de entrada */
 .reveal {
   opacity: 0;

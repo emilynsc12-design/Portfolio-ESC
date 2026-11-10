@@ -1,53 +1,65 @@
-import SectionHeading from '../SectionHeading/SectionHeading.jsx'
 import { useReveal } from '../../hooks/useReveal.js'
 import './About.css'
 
-const FACTS = [
-  { label: 'Ubicación', value: 'Trujillo, Perú' },
-  { label: 'Experiencia', value: '1 año' },
-  { label: 'Modalidad', value: 'Remoto / Híbrido / Presencial' },
-  { label: 'Disponibilidad', value: 'Inmediata' },
+const PILLARS = [
+  {
+    index: '01',
+    label: 'Análisis',
+    title: 'De la pregunta al indicador',
+    text: 'Python, pandas, SQL, análisis exploratorio y comprobación de calidad.',
+  },
+  {
+    index: '02',
+    label: 'Business Intelligence',
+    title: 'Modelos y dashboards interactivos',
+    text: 'Power BI, Power Query, Tableau y Looker Studio. Diseño de modelos dimensionales y reportes automatizados.',
+  },
+  {
+    index: '03',
+    label: 'Desarrollo de aplicaciones de datos',
+    title: 'Interfaces y herramientas de datos',
+    text: 'Gradio, Python, FastAPI. Creación de aplicaciones interactivas y herramientas web para la visualización o carga de datos.',
+  },
 ]
 
 export default function About() {
-  const imgRef = useReveal()
-  const textRef = useReveal()
+  const contentRef = useReveal()
+  const pillarsRef = useReveal()
 
   return (
     <section id="sobre-mi" className="section about">
       <div className="container about__inner">
-        <div ref={imgRef} className="about__media reveal">
-          <div className="about__photo-frame">
-            <img
-              src="/perfil.jpeg"
-              alt="Foto de perfil"
-            />
-          </div>
+        <div ref={contentRef} className="about__content reveal">
+          <span className="field-label about__eyebrow">Mi enfoque</span>
+
+          <h2 className="about__title">
+            Entender primero.
+            <br />
+            Modelar después.
+          </h2>
+
+          <p className="about__paragraph">
+            Me interesa comenzar mi carrera en análisis de datos. Mi formación y
+            mis proyectos combinan limpieza de datos, modelado relacional, visualización
+            y aprendizaje automático.
+          </p>
+
+          <p className="about__paragraph">
+            Busco oportunidades junior en Trujillo o remotas desde Perú. Valoro los
+            problemas concretos, la documentación clara y el trabajo en equipo.
+          </p>
         </div>
 
-        <div ref={textRef} className="about__content reveal">
-          <SectionHeading
-            title="Sobre mi"
-          />
-
-          <p className="about__paragraph">
-            Bachiller en Ingeniería de Computación y Sistemas con experiencia en desarrollo de 
-            software e interés en el análisis de datos.
-          </p>
-
-          <p className="about__paragraph">
-            Cuento con conocimientos en SQL, Python, Excel y herramientas de Business Intelligence 
-            para la limpieza, análisis y visualización de datos, desarrollando soluciones orientadas a la toma de decisiones.
-          </p>
-
-          <dl className="about__facts">
-            {FACTS.map((fact) => (
-              <div key={fact.label} className="about__fact">
-                <dt className="field-label">{fact.label}</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+        <div ref={pillarsRef} className="about__pillars reveal">
+          {PILLARS.map((pillar) => (
+            <div key={pillar.index} className="about__pillar">
+              <span className="about__pillar-label">
+                {pillar.index} / {pillar.label}
+              </span>
+              <h3 className="about__pillar-title">{pillar.title}</h3>
+              <p className="about__pillar-text">{pillar.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

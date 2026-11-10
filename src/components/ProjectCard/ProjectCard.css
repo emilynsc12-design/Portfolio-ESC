@@ -1,4 +1,5 @@
 .project-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -16,7 +17,7 @@
 
 .project-card__image-wrap {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 8;
   overflow: hidden;
   background: var(--bg-secondary);
 }
@@ -33,40 +34,98 @@
 }
 
 .project-card__body {
-  padding: 24px 26px 26px;
+  padding: 16px 18px 4px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .project-card__title {
-  font-size: 19px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .project-card__desc {
   color: var(--text-secondary);
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.55;
   flex: 1;
 }
 
 .project-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0 20px;
+  gap: 6px;
+  margin: 14px 0 16px;
 }
 
 .project-card__tags li {
   font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 5px 10px;
+  font-size: 11px;
+  padding: 4px 8px;
   background: var(--tag-bg);
   color: var(--tag-text);
   border-radius: 6px;
 }
 
-.project-card__cta {
-  align-self: flex-start;
+/* Pie de la tarjeta: "Ver caso" a la izquierda, enlaces a la derecha. */
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--border);
+  /* Por encima de la capa clicable de la tarjeta. */
+  position: relative;
+  z-index: 2;
+}
+
+.project-card__case {
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--accent);
+  transition: color 0.2s var(--ease);
+}
+
+.project-card__case:hover {
+  color: var(--accent-strong);
+}
+
+.project-card__links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.project-card__links a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease);
+}
+
+.project-card__links a:hover {
+  color: var(--accent);
+}
+
+/* Capa transparente: hace que toda la tarjeta sea clicable. */
+.project-card__open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: var(--radius-md);
 }

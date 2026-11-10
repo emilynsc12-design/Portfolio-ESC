@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SectionHeading from '../SectionHeading/SectionHeading.jsx'
 import { useReveal } from '../../hooks/useReveal.js'
 import './Contact.css'
@@ -48,7 +48,7 @@ const CHANNELS = [
     href: 'https://github.com/emilynsc12-design',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61" />
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
       </svg>
     ),
   },
@@ -58,15 +58,40 @@ export default function Contact() {
   const cardsRef = useReveal()
   const [copied, setCopied] = useState(false)
 
+  // Fallback para navegadores sin clipboard API segura (o sin permisos).
+  const fallbackCopy = (email) => {
+    const textarea = document.createElement('textarea')
+    textarea.value = email
+    textarea.setAttribute('readonly', '')
+    textarea.style.position = 'fixed'
+    textarea.style.opacity = '0'
+    document.body.appendChild(textarea)
+    textarea.select()
+    let ok = false
+    try {
+      ok = document.execCommand('copy')
+    } catch {
+      ok = false
+    }
+    document.body.removeChild(textarea)
+    return ok
+  }
+
   const handleCopy = async (email) => {
     try {
       await navigator.clipboard.writeText(email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
     } catch {
-      window.prompt('Copia tu correo electrónico:', email)
+      fallbackCopy(email)
     }
+    // Siempre mostramos el correo como mensaje: el usuario puede copiarlo a mano.
+    setCopied(true)
   }
+
+  useEffect(() => {
+    if (!copied) return
+    const timer = setTimeout(() => setCopied(false), 3000)
+    return () => clearTimeout(timer)
+  }, [copied])
 
   return (
     <section id="contacto" className="section contact">
@@ -95,7 +120,9 @@ export default function Contact() {
         </div>
 
         {copied && (
-          <p className="contact__copied" role="status">Correo copiado: emilynsc12@gmail.com</p>
+          <p className="contact__copied" role="status">
+            Correo copiado: <span className="contact__copied-email">emilynsc12@gmail.com</span>
+          </p>
         )}
       </div>
     </section>
