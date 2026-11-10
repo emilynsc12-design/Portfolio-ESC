@@ -1,27 +1,6 @@
-# Portafolio — Analista de Datos (UI)
+# Portafolio
 
-Interfaz de portafolio web en React + Vite. Solo diseño y estructura visual, sin backend ni lógica de negocio. Todo el contenido es de ejemplo (placeholder).
-
-## Ejecutar
-
-```bash
-npm install
-npm run dev
-```
-
-Abre la URL que muestra la terminal (por defecto `http://localhost:5173`).
-
-## Estructura
-
-```
-src/
-  components/     un componente por carpeta (JSX + CSS)
-  data/           contenido de ejemplo: projects.js, skills.js, certificates.js
-  context/        ThemeContext (modo claro/oscuro)
-  hooks/          useReveal (animación al hacer scroll)
-public/
-  cv-ana-rios.pdf placeholder del CV descargable
-```
+Interfaz de portafolio web en React + Vite. Solo diseño y estructura visual, sin backend ni lógica de negocio.
 
 ## Cómo agregar contenido
 
