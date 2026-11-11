@@ -45,16 +45,16 @@ export const projects = [
     },
   },
   {
-    id: 'analisis-ventas',
-    title: 'Análisis de Ventas',
+    id: 'sistema-ventas-provcal',
+    title: 'Sistema de Ventas PROVCAL',
     description:
-      'Exploración de datos de ventas retail para detectar estacionalidad, productos top y oportunidades de crecimiento por región.',
+       'Sistema web de punto de venta que permite gestionar productos, usuarios, ventas e inventario mediante Kardex. Incluye reportes de ventas, control de stock, generación de tickets en PDF y exportación de datos a Excel.',
     image: null, // imagen real del proyecto (si es null se muestra un fondo degradado)
-    tags: ['SQL', 'Excel', 'Tableau'],
+    tags: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
     links: {
       dashboard: null, // URL del dashboard publicado (Power BI, Looker Studio, etc.)
       app: null,       // URL de la app en vivo (Streamlit, etc.)
-      code: null,      // URL del repositorio en GitHub
+      code: 'https://github.com/emilynsc12-design/Sistema-Ventas-Provcal.git',      // URL del repositorio en GitHub
     },
   },
   {
